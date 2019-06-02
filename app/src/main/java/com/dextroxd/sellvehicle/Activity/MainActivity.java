@@ -1,10 +1,16 @@
 package com.dextroxd.sellvehicle.Activity;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.SeekBar;
+import android.widget.TextView;
 
 import com.dextroxd.sellvehicle.R;
 import com.dextroxd.sellvehicle.Fragments.ChatsFragment;
@@ -16,6 +22,8 @@ import com.dextroxd.sellvehicle.Fragments.SellFragment;
 public class MainActivity extends AppCompatActivity {
     //Bottom Navigation Bar and its navigator
     //Just to select the various fragments associated with the navigation bar ©Dextroxd(DIVYANSHU)
+
+
     private BottomNavigationView bottomNavigationView;
     private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
@@ -46,9 +54,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         bottomNavigationView = findViewById(R.id.nav_bar);
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
         getSupportFragmentManager().beginTransaction().replace(R.id.container,new ExploreFragment()).commit();
     }
+
 
 }

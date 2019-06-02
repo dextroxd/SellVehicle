@@ -1,13 +1,17 @@
 package com.dextroxd.sellvehicle.Fragments;
 
 
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
+import android.widget.ImageButton;
 
+import com.dextroxd.sellvehicle.Activity.filterActivity;
 import com.dextroxd.sellvehicle.Adapter.GridAdapter;
 import com.dextroxd.sellvehicle.Model.ModelCard;
 import com.dextroxd.sellvehicle.R;
@@ -20,23 +24,35 @@ import java.util.ArrayList;
 public class SellFragment extends Fragment {
 
     private GridView gridView;
+    private Drawable filter_button;
     private GridAdapter gridAdapter;
     private ArrayList<ModelCard>modelCards = new ArrayList<>();
     public SellFragment() {
         // Required empty public constructor
     }
     @Override
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view =  inflater.inflate(R.layout.fragment_sell, container, false);
+        ImageButton filter_button =(ImageButton)view.findViewById(R.id.filter_button);
+        filter_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in=new Intent(getActivity(), filterActivity.class);
+                startActivity(in);
+            }
+        });
         gridView = view.findViewById(R.id.grid_view);
         gridAdapter = new GridAdapter(getContext(),modelCards);
         gridView.setAdapter(gridAdapter);
         getData();
         gridAdapter.notifyDataSetChanged();
         return view;
+
     }
+
     public void getData(){
         //For fetching image through url
 //        ArrayList<String> imageurl = new ArrayList<>();
@@ -91,5 +107,6 @@ public class SellFragment extends Fragment {
         gridAdapter.notifyDataSetChanged();
 
     }
+
 
 }

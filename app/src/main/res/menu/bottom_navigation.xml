@@ -3,6 +3,11 @@
     <item android:id="@+id/explore" android:enabled="true" android:checkable="true" android:icon="@drawable/ic_change_history_black_24dp" android:title="EXPLORE"/>
     <item android:id="@+id/chats" android:enabled="true" android:checkable="true" android:icon="@drawable/ic_chat_bubble_outline_black_24dp" android:title="CHAT"/>
     <item android:id="@+id/sell" android:enabled="true" android:checkable="true" android:icon="@drawable/ic_account_balance_wallet_black_24dp" android:title="SELL"/>
-    <item android:id="@+id/myads" android:enabled="true" android:checkable="true" android:icon="@drawable/ic_library_books_black_24dp" android:title="MY ADS"/>
+    <item
+        android:id="@+id/myads"
+        android:checkable="true"
+        android:enabled="true"
+        android:icon="@drawable/ic_favorite_border_black_24dp"
+        android:title="MY ADS" />
     <item android:id="@+id/myaccount" android:enabled="true" android:checkable="true" android:icon="@drawable/ic_person_outline_black_24dp" android:title="ACCOUNT"/>
 </menu>
