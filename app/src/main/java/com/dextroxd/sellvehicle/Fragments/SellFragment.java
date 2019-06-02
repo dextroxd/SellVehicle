@@ -2,6 +2,7 @@ package com.dextroxd.sellvehicle.Fragments;
 
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 public class SellFragment extends Fragment {
 
     private GridView gridView;
-    private ImageButton filter_button;
+    private Drawable filter_button;
     private GridAdapter gridAdapter;
     private ArrayList<ModelCard>modelCards = new ArrayList<>();
     public SellFragment() {

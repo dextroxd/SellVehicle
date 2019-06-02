@@ -147,13 +147,16 @@
                android:textSize="20dp"
                android:layout_marginTop="20dp"/>
 
+
            <Button
                android:id="@+id/button4"
                style="@android:style/Widget.Holo.Light.Button"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:layout_below="@+id/textView6"
-               android:layout_marginTop="4dp"
+               android:layout_alignParentStart="true"
+               android:layout_marginStart="0dp"
+
                android:background="@drawable/rounded_button"
                android:text="1" />
 
@@ -164,7 +167,7 @@
                android:layout_height="wrap_content"
                android:layout_below="@+id/textView6"
                android:layout_marginLeft="110dp"
-               android:layout_marginTop="4dp"
+
                android:background="@drawable/rounded_button"
                android:text="2" />
 
@@ -175,7 +178,7 @@
                android:layout_height="wrap_content"
                android:layout_below="@+id/textView6"
                android:layout_marginLeft="200dp"
-               android:layout_marginTop="4dp"
+
                android:background="@drawable/rounded_button"
                android:text="3" />
 
@@ -186,9 +189,10 @@
                android:layout_height="wrap_content"
                android:layout_below="@+id/textView6"
                android:layout_alignParentRight="true"
-               android:layout_marginTop="4dp"
+
                android:background="@drawable/rounded_button"
                android:text="4+" />
+
 
            <TextView
                android:id="@+id/textView7"
@@ -292,7 +296,7 @@
                android:layout_height="wrap_content"
                android:layout_below="@+id/textView10"
                android:layout_centerHorizontal="true"
-               android:layout_marginTop="10dp"
+               android:layout_marginTop="9dp"
                android:background="@drawable/rounded_button"
                android:text="SEMI" />
 

@@ -41,7 +41,7 @@ int for_gender;//0 for boys,1 for girls,2 for family,3 for other
         Button button8=(Button)findViewById(R.id.button8);
         Button button9=(Button)findViewById(R.id.button9);
         Button button10=(Button)findViewById(R.id.button10);
-        Button button11=(Button)findViewById(R.id.button11);
+        Button button11=(Button)findViewById(R.id.apply_filter_button);
         SeekBar seekBar2=(SeekBar)findViewById(R.id.seekBar2);
         SeekBar seekBar3=(SeekBar)findViewById(R.id.seekBar3);
         textView12=(TextView)findViewById(R.id.textView12);

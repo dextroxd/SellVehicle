@@ -18,7 +18,7 @@ public class SignUpActivity extends AppCompatActivity {
     Button signup_button;
     EditText name_text;
     EditText password_text;
-    EditText phone_text;
+    EditText city_text;
     EditText email_text;
     Button fb_button;
     Button google_button;
