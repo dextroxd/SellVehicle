@@ -78,15 +78,28 @@
                 android:onClick="onLogin"
                 android:padding="12dp"
                 android:text="LOG IN" />
-            <TextView
-                android:id="@+id/link_signup"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                android:gravity="center"
-                android:text="New Here? Register"
-                android:textSize="16dip" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:gravity="center">
+                <View
+                    android:layout_width="80dp"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New here? Register"
+                    android:id="@+id/link_signup"
 
+                    />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"/>
+
+            </LinearLayout>
         </LinearLayout>
 
     </ScrollView>
