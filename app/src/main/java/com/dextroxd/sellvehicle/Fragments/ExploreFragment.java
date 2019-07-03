@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,8 +43,12 @@ public class ExploreFragment extends Fragment {
             public void onClick(View v) {
                 Intent in=new Intent(getActivity(), filterActivity.class);
                 startActivity(in);
+                getActivity().overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right);
+
             }
         });
+
+
         gridView = view.findViewById(R.id.grid_view);
         gridAdapter = new GridAdapter(getContext(),modelCards);
         gridView.setAdapter(gridAdapter);
