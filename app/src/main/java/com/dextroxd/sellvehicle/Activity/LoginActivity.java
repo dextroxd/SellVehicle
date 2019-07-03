@@ -1,14 +1,14 @@
 package com.dextroxd.sellvehicle.Activity;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
+        import android.content.Intent;
+        import android.support.v7.app.AppCompatActivity;
+        import android.os.Bundle;
+        import android.view.View;
+        import android.widget.EditText;
+        import android.widget.TextView;
+        import android.widget.Toast;
 
-import com.dextroxd.sellvehicle.R;
+        import com.dextroxd.sellvehicle.R;
 
 public class LoginActivity extends AppCompatActivity {
     TextView link_signup;

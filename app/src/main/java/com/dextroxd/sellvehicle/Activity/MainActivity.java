@@ -1,22 +1,16 @@
 package com.dextroxd.sellvehicle.Activity;
 
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.SeekBar;
-import android.widget.TextView;
 
+import com.dextroxd.sellvehicle.Fragments.MyAdsFragment;
 import com.dextroxd.sellvehicle.R;
 import com.dextroxd.sellvehicle.Fragments.ChatsFragment;
 import com.dextroxd.sellvehicle.Fragments.ExploreFragment;
 import com.dextroxd.sellvehicle.Fragments.MyAccountFragment;
-import com.dextroxd.sellvehicle.Fragments.MyAdsFragment;
 import com.dextroxd.sellvehicle.Fragments.SellFragment;
 
 public class MainActivity extends AppCompatActivity {

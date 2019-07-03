@@ -18,7 +18,7 @@ TextView textView;
 TextView textView12;
 TextView textView14;
 int max=50000;int min=1000;int current=10000;
-int min2=2,max2=1000,current2=500;
+int min2=2,max2=60,current2=30;
 int furnishing_type;//0 for furnished,1 for semi,2 for unfurnished
 int for_gender;//0 for boys,1 for girls,2 for family,3 for other
     int bedroom_no;
