@@ -1,4 +1,5 @@
 package com.dextroxd.sellvehicle.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -8,6 +9,8 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dextroxd.sellvehicle.Fragments.ExploreFragment;
+import com.dextroxd.sellvehicle.Fragments.ExploreFragment_filter;
 import com.dextroxd.sellvehicle.R;
 
 public class filterActivity extends AppCompatActivity {
@@ -209,6 +212,8 @@ int for_gender;//0 for boys,1 for girls,2 for family,3 for other
             public void onClick(View v) {
                 Toast toast=Toast.makeText(filterActivity.this,"Filters Applied!",Toast.LENGTH_SHORT);
                 toast.show();
+                Intent in=new Intent(filterActivity.this, ExploreFragment.class);
+                startActivity(in);
             }
         });
 
