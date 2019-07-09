@@ -2,6 +2,7 @@ package com.dextroxd.sellvehicle.Fragments;
 
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ImageButton;
 
+import com.dextroxd.sellvehicle.Activity.DBHelper;
 import com.dextroxd.sellvehicle.Activity.filterActivity;
 import com.dextroxd.sellvehicle.Adapter.GridAdapter;
 import com.dextroxd.sellvehicle.Model.ModelCard;
@@ -25,17 +27,25 @@ public class ExploreFragment extends Fragment {
 
     private GridView gridView;
     private Drawable filter_button;
+    String cost, bedroom, furnishing;
+    DBHelper myDB;
     private GridAdapter gridAdapter;
-    private ArrayList<ModelCard>modelCards = new ArrayList<>();
+    private ArrayList<ModelCard> modelCards=new ArrayList<>();
+
     public ExploreFragment() {
         // Required empty public constructor
     }
+
     @Override
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view =  inflater.inflate(R.layout.fragment_explore, container, false);
+        gridView = view.findViewById(R.id.grid_view);
+        gridAdapter = new GridAdapter(view.getContext(), R.layout.cardsofsale, modelCards);
+        myDB=new DBHelper(view.getContext());
+        gridView.setAdapter(gridAdapter);
         ImageButton filter_button =(ImageButton)view.findViewById(R.id.filter_button);
         filter_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,69 +54,56 @@ public class ExploreFragment extends Fragment {
                 startActivity(in);
             }
         });
-        gridView = view.findViewById(R.id.grid_view);
-        gridAdapter = new GridAdapter(getContext(),modelCards);
-        gridView.setAdapter(gridAdapter);
-        getData();
+
+        Cursor data = myDB.getData("SELECT * FROM status_table");
+        while (data.moveToNext()) {
+            cost = data.getString(1);
+            bedroom = data.getString(2);
+            furnishing = data.getString(3);
+
+            modelCards.add(new ModelCard(cost, bedroom, furnishing));
+        }
+
         gridAdapter.notifyDataSetChanged();
         return view;
 
     }
 
-    public void getData(){
+
+
+   /* public void getData() {
+        String cost1,bedroom1,furnishing1;
         //For fetching image through url
 //        ArrayList<String> imageurl = new ArrayList<>();
         ArrayList<String> cost = new ArrayList<>();
-        ArrayList<String> title = new ArrayList<>();
-        ArrayList<String> description = new ArrayList<>();
-        ArrayList<Boolean> like  = new ArrayList<>();
-        ArrayList<String> location = new ArrayList<>();
-        cost.add("234575345");
-        cost.add("23453456");
-        cost.add("9698529");
-        cost.add("74128963");
-        cost.add("85296374");
-        cost.add("951753868442");
-        cost.add("987456321");
-        cost.add("123654789");
-        title.add("Porsche cayenne diesel");
-        title.add("Royal Enfield Bullet");
-        title.add("Flats");
-        title.add("dfghjklpoiuhgf");
-        title.add("efivjndfvmdfv");
-        title.add("diucjnsd");
-        title.add("reifoemnvfm");
-        title.add("asxsaoxsom");
-        description.add("2013-52000Km.");
-        description.add("2018-21000Km.");
-        description.add("3BHK");
-        description.add("8MARLA");
-        description.add("ftgyuiopoiuhgf");
-        description.add("ferfeergtrg");
-        description.add("efrgtrtgrtg");
-        description.add("efrgetgrtg");
-        like.add(false);
-        like.add(false);
-        like.add(false);
-        like.add(false);
-        like.add(false);
-        like.add(false);
-        like.add(false);
-        like.add(false);
-        location.add("SHYAM NAGAR, JAIPUR");
-        location.add("SHYAM NAGAR, JAIPUR");
-        location.add("SHYAM NAGAR, JAIPUR");
-        location.add("SHYAM NAGAR, JAIPUR");
-        location.add("SHYAM NAGAR, JAIPUR");
-        location.add("SHYAM NAGAR, JAIPUR");
-        location.add("SHYAM NAGAR, JAIPUR");
-        location.add("SHYAM NAGAR, JAIPUR");
-        for(int i=0;i<like.size();i++){
-            modelCards.add(new ModelCard("",cost.get(i),title.get(i),like.get(i),description.get(i),location.get(i)));
+        ArrayList<String> bedroom = new ArrayList<>();
+        ArrayList<String> furnishing = new ArrayList<>();
+        //ArrayList<Boolean> like = new ArrayList<>();
+       // ArrayList<String> location = new ArrayList<>();
+        Cursor data=myDB.getListContents1();
+        if(data.getCount()>0){
+            if(data.moveToFirst()){
+                do{
+
+                    cost1=data.getString(1);
+                    bedroom1=data.getString(2);
+                    furnishing1=data.getString(3);
+
+                    cost.add(cost1);
+                    bedroom.add(bedroom1);
+                    furnishing.add(furnishing1);
+
+
+                }while (data.moveToNext());
+            }
         }
-        gridAdapter.notifyDataSetChanged();
+        for (int i = 0; i < cost.size(); i++) {
+            modelCards.add(new ModelCard(cost.get(i), bedroom.get(i), furnishing.get(i)));
 
-    }
+            gridAdapter.notifyDataSetChanged();
+
+        }
 
 
+    }*/
 }

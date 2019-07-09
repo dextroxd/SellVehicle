@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".Fragments.ExploreFragment">
+    tools:context=".Fragments.SellFragment">
     <android.support.v7.widget.Toolbar
         android:id="@+id/id_actionBar"
         android:layout_width="match_parent"
@@ -46,13 +46,15 @@
                 android:layout_marginTop="10dp"
                 android:id="@+id/id_bathrooms"
                 android:hint="Bathrooms"/>
+
             <EditText
+                android:id="@+id/id_furnishing"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
+                android:layout_alignParentStart="true"
                 android:layout_marginTop="10dp"
-                android:id="@+id/id_furnishing"
-                android:hint="Furnishing"/>
+                android:layout_marginBottom="20dp"
+                android:hint="Furnishing" />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -100,13 +102,14 @@
                     android:text="No"
                     android:id="@+id/no_button"/>
             </LinearLayout>
+
             <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="10dp"
                 android:id="@+id/id_maintenance"
-                android:hint="Maintenance(Monthly)"/>
+                android:layout_width="match_parent"
+                android:layout_height="98dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:hint="Maintenance(Monthly)" />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -197,6 +200,12 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/id_describe"
                 android:hint="Include condition features "/>
+            <Button
+                android:layout_width="match_parent"
+                android:text="submit"
+                android:id="@+id/id_submit"
+                android:layout_marginTop="20dp"
+                android:layout_height="wrap_content" />
 
 
         </LinearLayout>
