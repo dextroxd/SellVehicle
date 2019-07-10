@@ -15,18 +15,18 @@
        <RelativeLayout
            android:layout_width="match_parent"
            android:layout_height="match_parent">
+
            <TextView
                android:id="@+id/textView2"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:text="Rent"
-               android:textStyle="bold"
                android:layout_centerHorizontal="true"
-               android:textSize="20dp"/>
+               android:textStyle="bold"
+               android:text="Rent"
+               android:textSize="20dp" />
 
            <SeekBar
                android:id="@+id/seekBar"
-               style="@style/Widget.AppCompat.SeekBar"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:layout_below="@+id/textView2"
@@ -34,7 +34,7 @@
                android:max="50000"
                android:min="1000"
                android:progress="25000"
-               android:progressDrawable="@drawable/custom_progress"
+
                android:thumb="@android:drawable/ic_notification_overlay" />
 
            <TextView
@@ -67,140 +67,106 @@
                android:text="Houses For"
                android:textStyle="bold"
                android:layout_below="@+id/textView3"
-               android:layout_marginTop="0dp"
+               android:layout_marginTop="10dp"
                android:layout_centerHorizontal="true"
                android:textSize="20dp"/>
 
-           <Button
-               android:id="@+id/button"
-               style="@android:style/Widget.Holo.Light.Button.Small"
-               android:layout_width="60dp"
+           <RadioGroup
+               android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:layout_below="@+id/textView5"
-               android:background="@drawable/rounded_button"
-               android:text="BOYS" />
-           <Space
-               android:layout_width="0dp"
-               android:layout_height="1dp"
-               android:layout_weight="1" />
+               android:layout_below="@id/textView5"
+               android:orientation="horizontal"
+               android:id="@+id/radiogroup">
 
+               <RadioButton
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Boys"
+                   android:layout_weight="1"
+                   android:layout_marginRight="20dp"
 
+                   android:id="@+id/boys"/>
+               <RadioButton
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Girls"
+                   android:layout_marginRight="20dp"
+                   android:layout_weight="1"
+                   android:id="@+id/girls"/>
+               <RadioButton
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginRight="20dp"
+                   android:text="Family"
+                   android:layout_weight="1"
+                   android:id="@+id/family" />
 
-           <Button
-               android:id="@+id/button2"
-               style="@android:style/Widget.Holo.Light.Button.Small"
-               android:layout_width="60dp"
-               android:layout_height="wrap_content"
-               android:layout_below="@+id/textView5"
-               android:layout_marginLeft="100dp"
-               android:background="@drawable/rounded_button"
-               android:text="GIRLS" />
-           <Space
-               android:layout_width="0dp"
-               android:layout_height="1dp"
-               android:layout_weight="1" />
+               <RadioButton
+                   android:layout_width="wrap_content"
+                   android:layout_weight="1"
+                   android:layout_height="wrap_content"
+                   android:text="Other"
+                   android:id="@+id/other"/>
 
-
-           <Button
-               android:id="@+id/button3"
-               style="@android:style/Widget.Holo.Light.Button.Small"
-               android:layout_width="60dp"
-               android:layout_marginRight="10dp"
-
-               android:layout_height="wrap_content"
-               android:layout_below="@+id/textView5"
-               android:layout_marginLeft="200dp"
-               android:layout_marginTop="-1dp"
-               android:background="@drawable/rounded_button"
-               android:text="FAMILY" />
-           <Space
-               android:layout_width="0dp"
-               android:layout_height="1dp"
-               android:layout_weight="1" />
-
-
-           <Button
-               android:id="@+id/button12"
-               style="@android:style/Widget.Holo.Light.Button.Small"
-               android:layout_width="60dp"
-               android:layout_height="wrap_content"
-
-               android:layout_below="@+id/textView5"
-               android:layout_alignParentRight="true"
-               android:background="@drawable/rounded_button"
-               android:text="OTHER" />
-           <Space
-               android:layout_width="0dp"
-               android:layout_height="1dp"
-               android:layout_weight="1" />
-
-
-
+           </RadioGroup>
            <TextView
                android:id="@+id/textView6"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:text="Bedrooms"
                android:layout_marginBottom="10dp"
-               android:layout_below="@+id/button2"
+               android:layout_below="@+id/radiogroup"
                android:layout_centerHorizontal="true"
                android:textSize="20dp"
+               android:textStyle="bold"
                android:layout_marginTop="20dp"/>
 
 
-           <Button
-               android:id="@+id/button4"
-               style="@android:style/Widget.Holo.Light.Button"
+           <RadioGroup
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:layout_below="@+id/textView6"
-               android:layout_alignParentStart="true"
-               android:layout_marginStart="0dp"
+               android:orientation="horizontal"
+               android:id="@+id/radiogroup2"
+               android:layout_below="@id/textView6">
 
-               android:background="@drawable/rounded_button"
-               android:text="1" />
-
-           <Button
-               android:id="@+id/button5"
-               style="@android:style/Widget.Holo.Light.Button"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_below="@+id/textView6"
-               android:layout_marginLeft="110dp"
-
-               android:background="@drawable/rounded_button"
-               android:text="2" />
-
-           <Button
-               android:id="@+id/button6"
-               style="@android:style/Widget.Holo.Light.Button"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_below="@+id/textView6"
-               android:layout_marginLeft="200dp"
-
-               android:background="@drawable/rounded_button"
-               android:text="3" />
-
-           <Button
-               android:id="@+id/button7"
-               style="@android:style/Widget.Holo.Light.Button.Inset"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_below="@+id/textView6"
-               android:layout_alignParentRight="true"
-
-               android:background="@drawable/rounded_button"
-               android:text="4+" />
+               <RadioButton
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="1"
+                   android:layout_marginLeft="20dp"
+                   android:layout_marginRight="30dp"
+                   android:id="@+id/one"/>
+               <RadioButton
+                   android:layout_width="wrap_content"
+                   android:layout_marginLeft="10dp"
+                   android:layout_height="wrap_content"
+                   android:layout_marginRight="30dp"
+                   android:text="2"
+                   android:id="@+id/two"/>
+               <RadioButton
+                   android:layout_width="wrap_content"
+                   android:layout_marginLeft="10dp"
+                   android:layout_marginRight="30dp"
+                   android:layout_height="wrap_content"
+                   android:text="3"
+                   android:id="@+id/three" />
+               <RadioButton
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginLeft="10dp"
+                   android:layout_marginRight="30dp"
+                   android:text="4+"
+                   android:id="@+id/four" />
 
 
+           </RadioGroup>
            <TextView
                android:id="@+id/textView7"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:text="Distance From Location"
                android:textStyle="bold"
-               android:layout_below="@+id/button7"
+               android:layout_below="@+id/radiogroup2"
                android:layout_centerHorizontal="true"
                android:layout_marginTop="20dp"
                android:textSize="20dp"/>
@@ -215,7 +181,7 @@
                android:max="100"
                android:min="0"
                android:progress="50"
-               android:progressDrawable="@drawable/custom_progress"
+
                android:thumb="@android:drawable/ic_notification_overlay" />
 
            <TextView
@@ -254,7 +220,6 @@
                android:max="60"
                android:min="1"
                android:progress="30"
-               android:progressDrawable="@drawable/custom_progress"
                android:thumb="@android:drawable/ic_notification_overlay" />
            <TextView
                android:layout_width="wrap_content"
@@ -280,36 +245,37 @@
                android:text="Furnishing Type"
                android:textStyle="bold"
                android:textSize="20dp" />
-
-           <Button
-               android:id="@+id/button8"
+           <RadioGroup
                android:layout_width="wrap_content"
+               android:layout_below="@id/textView10"
                android:layout_height="wrap_content"
-               android:layout_below="@+id/textView10"
-               android:layout_marginTop="10dp"
-               android:background="@drawable/rounded_button"
-               android:text="FURNISHED" />
+               android:orientation="horizontal"
+               android:id="@+id/radiogroup3">
 
-           <Button
-               android:id="@+id/button9"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_below="@+id/textView10"
-               android:layout_centerHorizontal="true"
-               android:layout_marginTop="9dp"
-               android:background="@drawable/rounded_button"
-               android:text="SEMI" />
+               <RadioButton
+                   android:layout_width="wrap_content"
+                   android:layout_marginRight="20dp"
+                   android:layout_height="wrap_content"
+                   android:text="Unfurnished"
+                   android:id="@+id/unfurnished"/>
+               <RadioButton
+                   android:layout_width="wrap_content"
+                   android:layout_marginRight="20dp"
+                   android:layout_height="50dp"
+                   android:text="Semi\nFurnished"
+                   android:id="@+id/semifurnished"/>
 
-           <Button
-               android:id="@+id/button10"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_below="@+id/textView10"
-               android:layout_alignParentRight="true"
-               android:layout_marginTop="10dp"
+               <RadioButton
+                   android:id="@+id/fullyfurnished"
+                   android:layout_width="wrap_content"
+                   android:layout_height="50dp"
+                   android:text="Fully\nfurnished" />
 
-               android:background="@drawable/rounded_button"
-               android:text="UNFURNISHED" />
+
+
+           </RadioGroup>
+
+
 
 
 
