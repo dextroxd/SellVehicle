@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,57 +14,72 @@ import com.dextroxd.sellvehicle.Fragments.ExploreFragment;
 import com.dextroxd.sellvehicle.Fragments.ExploreFragment_filter;
 import com.dextroxd.sellvehicle.R;
 
+/*
+rent_seekbar for rent, Duration_seekbar for duration of stay, distance_seekbar for distance from location
+
+
+text_rent ---to give the selected rent from rent_seekbar
+text_duration--- to give selected duration of stay for duration_seekbar
+text_distance ---to give distance from location from distance_Seekbar
+
+radio_housefor----radio group related to house for..
+selected_housefor-----use this to get the option selected by user related to house for.
+selected_housefor==1 for boys
+selected_housefor==2 for girls
+selected_housefor==3 for family
+selected_housefor==4 for other
+
+
+radio_bedroom---radio group related to bedroom..
+selected_bedroom----option selected by user related to no of bedroom
+selected_bedroom==1 for 1 bedroom
+selected_bedroom==2 for 2 bedroom
+selected_bedroom==3 for 3 bedroom
+selected_bedroom==4 for 4+ bedroom
+
+
+radio_furnishing----radio group related to furnishing
+selected_furnishing-----option selected by user related to furnishing
+selected_furnishing==1 for unfurnished
+selected_furnishing==2 for semi furnished
+selected_furnishing==3 for fully furnished
+
+
+ */
 public class filterActivity extends AppCompatActivity {
-SeekBar seekBar;
-SeekBar seekBar2;
-SeekBar seekBar3;
-TextView textView;
-TextView textView12;
-TextView textView14;
-int max=50000;int min=1000;int current=10000;
-int min2=2,max2=1000,current2=500;
-int furnishing_type;//0 for furnished,1 for semi,2 for unfurnished
-int for_gender;//0 for boys,1 for girls,2 for family,3 for other
-    int bedroom_no;
-    int max1=100,min1=0,current1=50;
+SeekBar rent_seekbar,duration_seekbar,distance_seekbar;
+TextView text_rent,text_duration,text_distance;
+int max=50000;int min=1000;int current=10000;// max , min,current are related to rent_seekbar
+int min2=2,max2=60,current2=30;//min2,max2,current2 are related to duration_seekbar
+int max1=100,min1=0,current1=50;//max1,min1,current1 are related to distance_Seekbar
+int selected_housefor=0,selected_bedroom=0,selected_furnishing=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter);
 
-        textView=(TextView)findViewById(R.id.textView);
-        seekBar=(SeekBar)findViewById(R.id.seekBar);
-        Button button=(Button)findViewById(R.id.button);
-        Button button2=(Button)findViewById(R.id.button2);
-        Button button3=(Button)findViewById(R.id.button3);
-        Button button4=(Button)findViewById(R.id.button4);
-        Button button5=(Button)findViewById(R.id.button5);
-        Button button6=(Button)findViewById(R.id.button6);
-        Button button7=(Button)findViewById(R.id.button7);
-        Button button12=(Button)findViewById(R.id.button12);
-        Button button8=(Button)findViewById(R.id.button8);
-        Button button9=(Button)findViewById(R.id.button9);
-        Button button10=(Button)findViewById(R.id.button10);
-        Button button11=(Button)findViewById(R.id.apply_filter_button);
-        SeekBar seekBar2=(SeekBar)findViewById(R.id.seekBar2);
-        SeekBar seekBar3=(SeekBar)findViewById(R.id.seekBar3);
-        textView12=(TextView)findViewById(R.id.textView12);
-        textView14=(TextView)findViewById(R.id.textView14);
-        seekBar.setMax(max);
-        seekBar.setProgress(current);
-        textView.setText(""+current);
-        seekBar2.setMax(max1);
-        seekBar2.setProgress(current1);
-        textView12.setText(current1+"km");
-        seekBar3.setMax(max2);
-        seekBar3.setProgress(current2);
-        textView14.setText(""+current2+"months");
 
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        text_rent=(TextView)findViewById(R.id.textView);
+        rent_seekbar=(SeekBar)findViewById(R.id.seekBar);
+        distance_seekbar=(SeekBar)findViewById(R.id.seekBar2);
+       duration_seekbar=(SeekBar)findViewById(R.id.seekBar3);
+        text_distance=(TextView)findViewById(R.id.textView12);
+        text_duration=(TextView)findViewById(R.id.textView14);
+        rent_seekbar.setMax(max);
+        rent_seekbar.setProgress(current);
+        text_rent.setText(""+current);
+        distance_seekbar.setMax(max1);
+        distance_seekbar.setProgress(current1);
+        text_distance.setText(current1+"km");
+        duration_seekbar.setMax(max2);
+        duration_seekbar.setProgress(current2);
+        text_duration.setText(""+current2+"months");
+
+        rent_seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 current=progress;
-                textView.setText(""+"₹"+current);
+                text_rent.setText(""+"₹"+current);
 
             }
 
@@ -81,75 +97,12 @@ int for_gender;//0 for boys,1 for girls,2 for family,3 for other
 
             }
         });
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for_gender=0;
-                Toast toast=Toast.makeText(filterActivity.this,"Room for Boys",Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        });
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for_gender=1;
-                Toast toast=Toast.makeText(filterActivity.this,"Room for Girls",Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        });
-        button3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for_gender=2;
-                Toast toast=Toast.makeText(filterActivity.this,"Room for Family ",Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        });
-        button4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bedroom_no=1;
-                Toast toast=Toast.makeText(filterActivity.this,"1 Bedroom",Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        });
-        button5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bedroom_no=2;
-                Toast toast=Toast.makeText(filterActivity.this,"2 Bedroom",Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        });
-        button6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bedroom_no=3;
-                Toast toast=Toast.makeText(filterActivity.this,"3 Bedroom",Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        });
-        button7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bedroom_no=4;
-                Toast toast=Toast.makeText(filterActivity.this,"4+ Bedroom",Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        });
-        button12.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for_gender=3;
-                Toast toast=Toast.makeText(filterActivity.this,"Other",Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        });
-        seekBar2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+        distance_seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 current1=progress;
-                textView12.setText(""+current1+"km");
+                text_distance.setText(""+current1+"km");
             }
 
             @Override
@@ -164,11 +117,11 @@ int for_gender;//0 for boys,1 for girls,2 for family,3 for other
 
             }
         });
-        seekBar3.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        duration_seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 current2=progress;
-                textView14.setText(""+current2+"months");
+                text_duration.setText(""+current2+"months");
             }
 
             @Override
@@ -183,40 +136,80 @@ int for_gender;//0 for boys,1 for girls,2 for family,3 for other
 
             }
         });
-        button8.setOnClickListener(new View.OnClickListener() {
+        RadioGroup radio_housefor = (RadioGroup)findViewById(R.id.radiogroup);
+        radio_housefor.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                furnishing_type=0;
-                Toast toast=Toast.makeText(filterActivity.this,"Furnished Selected",Toast.LENGTH_SHORT);
-                toast.show();
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if(checkedId==R.id.boys){
+                    selected_housefor=1;
+                    Toast toast=Toast.makeText(filterActivity.this,"Boys selected",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+                else if(checkedId==R.id.girls){
+                    selected_housefor=2;
+                    Toast toast=Toast.makeText(filterActivity.this,"Girls selected",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+                else if(checkedId==R.id.family){
+                    selected_housefor=3;
+                    Toast toast=Toast.makeText(filterActivity.this,"Family selected",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+                else{
+                    selected_housefor=4;
+                    Toast toast=Toast.makeText(filterActivity.this,"Other",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
             }
         });
-        button9.setOnClickListener(new View.OnClickListener() {
+        RadioGroup radio_bedroom = (RadioGroup)findViewById(R.id.radiogroup2);
+        radio_bedroom.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                furnishing_type=1;
-                Toast toast=Toast.makeText(filterActivity.this,"Semi Selected",Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        });
-        button10.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                furnishing_type=2;
-                Toast toast=Toast.makeText(filterActivity.this,"Unfurnished Selected",Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        });
-        button11.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast toast=Toast.makeText(filterActivity.this,"Filters Applied!",Toast.LENGTH_SHORT);
-                toast.show();
-                Intent in=new Intent(filterActivity.this, ExploreFragment.class);
-                startActivity(in);
-            }
-        });
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if(checkedId==R.id.one){
+                    selected_bedroom=1;
+                    Toast toast=Toast.makeText(filterActivity.this,"1 BHK",Toast.LENGTH_SHORT);
+                    toast.show();
 
+                }
+                else if(checkedId==R.id.two){
+                    selected_bedroom=2;
+                    Toast toast=Toast.makeText(filterActivity.this,"2 BHK",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+                else if(checkedId==R.id.three){
+                    selected_bedroom=3;
+                    Toast toast=Toast.makeText(filterActivity.this,"3 BHK",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+                else{
+                    selected_bedroom=4;
+                    Toast toast=Toast.makeText(filterActivity.this,"4+ BHK",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            }
+        });
+        RadioGroup radio_furnishing = (RadioGroup)findViewById(R.id.radiogroup3);
+        radio_furnishing.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if(checkedId==R.id.unfurnished){
+                    selected_furnishing=1;
+                    Toast toast=Toast.makeText(filterActivity.this,"Unfurnished",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+                else if(checkedId==R.id.semifurnished){
+                    selected_furnishing=2;
+                    Toast toast=Toast.makeText(filterActivity.this,"Semi Furnished",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+                else{
+                    selected_furnishing=3;
+                    Toast toast=Toast.makeText(filterActivity.this,"Fully Furnished",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            }
+        });
 
     }
 }
