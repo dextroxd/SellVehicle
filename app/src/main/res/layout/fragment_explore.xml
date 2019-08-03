@@ -12,7 +12,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="120dp"
-            android:background="#F3F4F6"
+            android:background="@drawable/gray_gradient"
             android:orientation="vertical"
             android:elevation="4dp"
             android:id="@+id/headerview">
@@ -35,7 +35,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="JAIPUR"
-                        android:textColor="@color/colorPrimary"/>
+                        android:textColor="#ffffff"/>
                 </LinearLayout>
                 <ImageButton
                     android:layout_width="wrap_content"
@@ -50,7 +50,7 @@
             <LinearLayout
                 android:id="@+id/name_text_input"
                 android:layout_width="fill_parent"
-                android:background="#FFFFFF"
+                android:background="@drawable/gray_gradient"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_margin="8dp"
@@ -62,6 +62,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="50dp"
                     android:layout_margin="8dp"
+                    android:focusableInTouchMode="false"
                     android:paddingLeft="10dp"
                     android:background="@drawable/roundaroundedittext"
                     android:drawableLeft="@drawable/ic_search_black_24dp"
@@ -76,9 +77,7 @@
                     android:layout_width="wrap_content"
                     android:id="@+id/filter_button"
                     android:layout_marginTop="10dp"
-
                     android:layout_marginBottom="10dp"
-
                     android:layout_height="fill_parent"
                     android:background="#FFFFFF"
                     android:src="@drawable/ic_noun_filter2"/>

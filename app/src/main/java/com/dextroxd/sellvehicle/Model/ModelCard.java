@@ -6,15 +6,15 @@ import android.util.Log;
 import static com.facebook.AccessTokenManager.TAG;
 
 public class ModelCard {
-    // String imageUrl;
+     String imageUrl;
     String Cost;
     // String title;
     // boolean like;
     String Bedroom;
     String Furnishing;
 
-  public ModelCard(String cost,String bedroom,String furnishing) {
-      // this.imageUrl = imageUrl;
+  public ModelCard(String cost,String bedroom,String furnishing,String imageUrl) {
+      this.imageUrl = imageUrl;
       Cost = cost;
       // this.title = title;
       // this.like = like;
@@ -27,6 +27,14 @@ public class ModelCard {
     //    return imageUrl;
     // }
 
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 
     public String getCost() {
         return Cost;

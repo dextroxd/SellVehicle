@@ -184,10 +184,13 @@
                         </option>
                         <option name="values">
                           <map>
+                            <entry key="assetSourceType" value="FILE" />
                             <entry key="autoMirrored" value="true" />
-                            <entry key="outputName" value="ic_arrow_back_black_24dp" />
+                            <entry key="height" value="600" />
+                            <entry key="outputName" value="ic_sale" />
                             <entry key="overrideSize" value="true" />
-                            <entry key="sourceFile" value="C:\Users\Care\Desktop\man-user.svg" />
+                            <entry key="sourceFile" value="C:\Users\Care\Desktop\sale.svg" />
+                            <entry key="width" value="600" />
                           </map>
                         </option>
                       </PersistentState>
