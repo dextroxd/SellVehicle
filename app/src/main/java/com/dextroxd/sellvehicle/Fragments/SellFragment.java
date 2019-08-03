@@ -1,10 +1,7 @@
 package com.dextroxd.sellvehicle.Fragments;
 
 
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -15,9 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
-import com.dextroxd.sellvehicle.Activity.DBHelper;
 import com.dextroxd.sellvehicle.R;
 
 /**
@@ -25,7 +20,7 @@ import com.dextroxd.sellvehicle.R;
  */
 public class SellFragment extends Fragment {
     EditText bedroooms,furnishing,rent;
-    DBHelper db;
+
     String final_furnishing;
     String  final_rent,final_bedroom;
     Button submit_button;
@@ -48,14 +43,14 @@ public class SellFragment extends Fragment {
         furnishing=(EditText)view.findViewById(R.id.id_furnishing);
         rent=(EditText)view.findViewById(R.id.id_maintenance);
         submit_button=(Button)view.findViewById(R.id.id_submit);
-        db=new DBHelper(view.getContext());
+
         submit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final_bedroom=bedroooms.getText().toString();
                 final_furnishing=furnishing.getText().toString();
                 final_rent=rent.getText().toString();
-                addData(final_bedroom,final_furnishing,final_rent);
+
 
             }
         });
@@ -107,12 +102,5 @@ public class SellFragment extends Fragment {
 
 
     }
-    public void addData(String bedroom,String furnishing,String rent){
-        int insertdata=db.adddata(bedroom,furnishing,rent);
-        if(insertdata==1)
-        {
-            Toast toast=Toast.makeText(getActivity(), "Successfully added data", Toast.LENGTH_SHORT);
-            toast.show();
-        }
-    }
+
 }

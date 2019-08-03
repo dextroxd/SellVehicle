@@ -1,5 +1,6 @@
 package com.dextroxd.sellvehicle.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -18,81 +19,57 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+import com.dextroxd.sellvehicle.ImageFetching;
 import com.dextroxd.sellvehicle.Model.ModelCard;
 import com.dextroxd.sellvehicle.R;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
-public class GridAdapter extends BaseAdapter {
-    private ArrayList<ModelCard>modelCards;
+public class GridAdapter extends ArrayAdapter<ModelCard> {
+    private ArrayList<ModelCard>a1=new ArrayList<>();
+    private TextView cost,bedroom,furnishing;
+    private ImageView image_house;
     private Context context;
-    private  int layout;
 
-
-    public GridAdapter(Context context, int layout, ArrayList<ModelCard> modelCards) {
+    public GridAdapter(@NonNull Context context, @NonNull ArrayList<ModelCard> objects) {
+        super(context,0, objects);
         this.context = context;
-        this.layout = layout;
-        this.modelCards = modelCards;
-    }
-    private class ViewHolder{
 
-        TextView cost,bedroom,furnishing;
-    }
-
-
-
-    @Override
-    public int getCount() {
-        return modelCards.size();
     }
 
     @Override
-    public Object getItem(int position) {
-        return modelCards.get(position);
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
-
-    @NonNull
-    @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View GridItemView = convertView;
-        ViewHolder holder = new ViewHolder();
-
 
         if (GridItemView == null) {
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            GridItemView = inflater.inflate(layout, null);
-            holder.cost = (TextView) GridItemView.findViewById(R.id.cost_sell);
-            holder.bedroom = (TextView) GridItemView.findViewById(R.id.heading_sell);
-            holder.furnishing = (TextView) GridItemView.findViewById(R.id.description_sell);
-            GridItemView.setTag(holder);
-
-        }
-        else{
-            holder = (ViewHolder) GridItemView.getTag();
+            GridItemView = LayoutInflater.from(getContext()).inflate(
+                    R.layout.cardsofsale, parent, false);
         }
 
+        final ModelCard modelCard = getItem(position);
+        cost=GridItemView.findViewById(R.id.cost_sell);
+        bedroom=GridItemView.findViewById(R.id.bedroom_sell);
+        furnishing=GridItemView.findViewById(R.id.size_sell);
+        image_house=GridItemView.findViewById(R.id.imageView_house);
+        ImageFetching imageFetching = new ImageFetching();
+        String url  = imageFetching.fetchImage(context,modelCard.getImageUrl());
+        if(url!="null")
+        Picasso.get().load(url).fit().centerCrop().into(image_house);
+        cost.setText("₹ "+modelCard.getCost());
+        bedroom.setText("bedroom "+modelCard.getBedroom());
+        furnishing.setText("furnishing "+modelCard.getFurnishing());
 
-
-         ModelCard modelCard = modelCards.get(position);
-       // ImageView imageView = GridItemView.findViewById(R.id.imageView);
-        //Un comment the below line to load image from url;
-//        Picasso.get().load(servicesModel.getImageUrl()).into(imageView);
-        holder.cost.setText("₹ "+modelCard.getCost());
-        holder.bedroom.setText("bedroom "+modelCard.getBedroom());
-        holder.furnishing.setText("furnishing "+modelCard.getFurnishing());
-
-        // Use code below for click event happen on click of card element.
-//        GridItemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//            }
-//        });
 
         return GridItemView;
 
