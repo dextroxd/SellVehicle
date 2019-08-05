@@ -12,7 +12,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/imageView_house"
             android:layout_width="match_parent"
             android:layout_height="180dp"
             android:scaleType="centerCrop"
@@ -22,16 +22,16 @@
             android:id="@+id/header"
             android:layout_width="match_parent"
             android:layout_height="42dp"
-            android:layout_below="@id/imageView"
+            android:layout_below="@id/imageView_house"
             android:layout_marginTop="-1dp">
 
             <TextView
-                android:id="@+id/cost"
+                android:id="@+id/cost_sell"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="₹400000000"
                 android:textColor="@android:color/black"
-                android:textSize="18sp"
+                android:text=""
+                android:textSize="18dp"
                 android:textStyle="bold" />
 
             <ImageButton
@@ -51,19 +51,17 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="PORSCHE CAYENNE DIESEL"
                     android:textColor="@android:color/black"
                     android:maxLines="1"
                     android:textAllCaps="true"
                     android:textSize="14sp"
-                    android:id="@+id/heading"/>
+                    android:id="@+id/bedroom_sell"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@android:color/black"
                     android:maxLines="1"
-                    android:id="@+id/description"
-                    android:text="2013-52000Km"
+                    android:id="@+id/size_sell"
                     android:textSize="14sp"
                     android:layout_marginTop="4dp"/>
                 <LinearLayout

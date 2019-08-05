@@ -7,6 +7,7 @@
     tools:context=".Activity.SignUpActivity"
     android:paddingLeft="18dp"
     android:paddingRight="18dp"
+    android:focusableInTouchMode="false"
     android:paddingTop="18dp"
     android:paddingBottom="18dp"
     >
@@ -33,10 +34,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:hintEnabled="false"
+                    android:focusableInTouchMode="true"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp">
 
-                    <EditText
+                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/input_name"
                         android:layout_marginTop="15dp"
                         android:layout_width="match_parent"
@@ -45,9 +47,10 @@
                         android:background="@drawable/white_round"
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
-
                         android:hint="Name"
+                        android:focusableInTouchMode="true"
                         android:inputType="textCapWords"
+
                         />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
@@ -60,17 +63,18 @@
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:focusableInTouchMode="true"
                     android:layout_marginTop="8dp"
                     app:hintEnabled="false"
                     android:layout_marginBottom="8dp">
 
-                    <EditText
+                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/input_email"
                         android:layout_width="match_parent"
                         android:layout_marginTop="15dp"
                         android:layout_height="40dp"
                         android:hint="Email"
-
+                        android:focusableInTouchMode="true"
                         android:paddingRight="20dp"
                         android:paddingLeft="20dp"
                         android:background="@drawable/white_round"
@@ -90,12 +94,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:focusableInTouchMode="true"
                     app:hintEnabled="false"
                     android:layout_marginBottom="8dp">
 
-                    <EditText
+                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/input_phone"
                         android:layout_marginTop="15dp"
+                        android:focusableInTouchMode="true"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:background="@drawable/white_round"
@@ -115,6 +121,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:focusableInTouchMode="true"
                     app:hintEnabled="false"
                     android:layout_marginBottom="8dp">
 
@@ -122,6 +129,7 @@
                         android:id="@+id/input_password"
                         android:layout_width="match_parent"
                         android:layout_marginTop="15dp"
+                        android:focusableInTouchMode="true"
                         android:layout_height="40dp"
                         android:hint="Password"
                         android:background="@drawable/white_round"
