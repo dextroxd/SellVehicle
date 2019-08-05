@@ -7,10 +7,10 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.dextroxd.sellvehicle.R;
-import com.dextroxd.sellvehicle.Fragments.ExploreFragment;
-import com.dextroxd.sellvehicle.Fragments.MyAccountFragment;
-import com.dextroxd.sellvehicle.Fragments.MyAdsFragment;
-import com.dextroxd.sellvehicle.Fragments.SellFragment;
+import com.dextroxd.sellvehicle.Sell.SellFragment;
+import com.dextroxd.sellvehicle.explore.ExploreFragment;
+import com.dextroxd.sellvehicle.myAds.MyAdsFragment;
+import com.dextroxd.sellvehicle.my_account.MyAccountFragment;
 
 public class MainActivity extends AppCompatActivity {
     //Bottom Navigation Bar and its navigator

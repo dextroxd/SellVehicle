@@ -1,7 +1,5 @@
-package com.dextroxd.sellvehicle.Fragments;
+package com.dextroxd.sellvehicle.myAds;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;

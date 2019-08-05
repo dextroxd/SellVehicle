@@ -1,17 +1,11 @@
 package com.dextroxd.sellvehicle.Activity;
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dextroxd.sellvehicle.Fragments.ExploreFragment;
-import com.dextroxd.sellvehicle.Fragments.ExploreFragment_filter;
 import com.dextroxd.sellvehicle.R;
 
 /*

@@ -1,4 +1,4 @@
-package com.dextroxd.sellvehicle.Fragments;
+package com.dextroxd.sellvehicle.my_account;
 
 
 import android.content.Intent;
