@@ -1,9 +1,4 @@
-package com.dextroxd.sellvehicle.Model;
-
-import android.nfc.Tag;
-import android.util.Log;
-
-import static com.facebook.AccessTokenManager.TAG;
+package com.dextroxd.sellvehicle.exploreFragment.model_explore;
 
 public class ModelCard {
      String imageUrl;

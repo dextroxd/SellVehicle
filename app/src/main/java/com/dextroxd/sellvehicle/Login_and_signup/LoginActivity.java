@@ -1,4 +1,4 @@
-package com.dextroxd.sellvehicle.Login_and_signup;
+package com.dextroxd.sellvehicle.login_and_signup;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +8,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dextroxd.sellvehicle.Activity.MainActivity;
+import com.dextroxd.sellvehicle.activities.MainActivity;
 import com.dextroxd.sellvehicle.R;
 
 public class LoginActivity extends AppCompatActivity {
@@ -24,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i=new Intent(LoginActivity.this,SignUpActivity.class);
                 startActivity(i);
+                finish();
             }
         });
 

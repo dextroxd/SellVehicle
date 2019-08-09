@@ -23,8 +23,8 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.dextroxd.sellvehicle.Adapter.GridAdapter;
-import com.dextroxd.sellvehicle.Model.ModelCard;
+import com.dextroxd.sellvehicle.exploreFragment.adapter_explore.GridAdapter;
+import com.dextroxd.sellvehicle.exploreFragment.model_explore.ModelCard;
 import com.dextroxd.sellvehicle.R;
 
 import org.json.JSONArray;

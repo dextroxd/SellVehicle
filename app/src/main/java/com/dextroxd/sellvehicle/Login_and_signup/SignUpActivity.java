@@ -1,4 +1,4 @@
-package com.dextroxd.sellvehicle.Login_and_signup;
+package com.dextroxd.sellvehicle.login_and_signup;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,10 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dextroxd.sellvehicle.Activity.MainActivity;
+import com.dextroxd.sellvehicle.activities.MainActivity;
 import com.dextroxd.sellvehicle.R;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -25,10 +26,9 @@ public class SignUpActivity extends AppCompatActivity {
     EditText password_text;
     EditText city_text;
     EditText email_text;
-    Button fb_button;
-    Button google_button;
+    ImageView fb_button;
+    ImageView google_button;
     TextView login_link;
-
     CallbackManager callbackManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +44,14 @@ public class SignUpActivity extends AppCompatActivity {
 //                startActivity(in);
 //            }
 //        });
+        login_link = findViewById(R.id.link_login);
+        login_link.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SignUpActivity.this,LoginActivity.class));
+                finish();
+            }
+        });
         fb_button = findViewById(R.id.btn_fb);
         fb_button.setOnClickListener(new View.OnClickListener() {
             @Override

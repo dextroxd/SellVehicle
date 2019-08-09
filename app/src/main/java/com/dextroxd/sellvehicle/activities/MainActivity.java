@@ -1,4 +1,4 @@
-package com.dextroxd.sellvehicle.Activity;
+package com.dextroxd.sellvehicle.activities;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -7,8 +7,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.dextroxd.sellvehicle.R;
-import com.dextroxd.sellvehicle.Sell.SellFragment;
-import com.dextroxd.sellvehicle.explore.ExploreFragment;
+import com.dextroxd.sellvehicle.sell.SellFragment;
+import com.dextroxd.sellvehicle.exploreFragment.ExploreFragment;
 import com.dextroxd.sellvehicle.myAds.MyAdsFragment;
 import com.dextroxd.sellvehicle.my_account.MyAccountFragment;
 

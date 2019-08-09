@@ -1,4 +1,4 @@
-package com.dextroxd.sellvehicle.Activity;
+package com.dextroxd.sellvehicle.activities;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.RadioGroup;

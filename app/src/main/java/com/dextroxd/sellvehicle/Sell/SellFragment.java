@@ -1,4 +1,4 @@
-package com.dextroxd.sellvehicle.Sell;
+package com.dextroxd.sellvehicle.sell;
 
 
 import android.os.Bundle;
