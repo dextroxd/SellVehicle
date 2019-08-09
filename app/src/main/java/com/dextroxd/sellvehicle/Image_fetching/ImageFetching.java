@@ -1,9 +1,7 @@
-package com.dextroxd.sellvehicle;
+package com.dextroxd.sellvehicle.Image_fetching;
 
-import android.app.DownloadManager;
 import android.content.Context;
 import android.util.Log;
-import android.widget.ImageView;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkResponse;
@@ -13,13 +11,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.squareup.picasso.Picasso;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.net.URL;
 
 public class ImageFetching {
     String  to_be_returned;

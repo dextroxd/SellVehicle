@@ -1,18 +1,20 @@
-package com.dextroxd.sellvehicle.Fragments;
+package com.dextroxd.sellvehicle.exploreFragment;
 
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.GridView;
-import android.widget.Toast;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
@@ -20,36 +22,38 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.dextroxd.sellvehicle.Adapter.GridAdapter;
-import com.dextroxd.sellvehicle.Model.ModelCard;
+import com.dextroxd.sellvehicle.exploreFragment.adapter_explore.GridAdapter;
+import com.dextroxd.sellvehicle.exploreFragment.model_explore.ModelCard;
 import com.dextroxd.sellvehicle.R;
+import com.ethanhua.skeleton.Skeleton;
+import com.ethanhua.skeleton.SkeletonScreen;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import static android.support.design.internal.BottomNavigationMenu.MAX_ITEM_COUNT;
+import static android.support.v7.widget.RecyclerView.*;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ExploreFragment extends Fragment {
+public class ExploreFragment extends Fragment implements Animation.AnimationListener {
     private final String LINK_URL = "http://www.litstays.com/wp-json/wp/v2/properties";
     int p = 1;
     int to_be_returned = 200;
-    private GridView gridView;
+    private RecyclerView recyclerView;
     private Drawable filter_button;
     String cost, bedroom, furnishing;
     private GridAdapter gridAdapter;
+    private SkeletonScreen skeletonScreen;
     private ArrayList<ModelCard> modelCards;
     private int visibleThreshold = 6;
-    private int currentPage = 1;
+    private int currentPage = 1,visibleItemCount,totalItemCount,firstVisibleItem;
     private int previousTotal = 0;
     private boolean loading = true;
+    Animation animFadein;
 
 
     public ExploreFragment() {
@@ -62,29 +66,51 @@ public class ExploreFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         final View view = inflater.inflate(R.layout.fragment_explore, container, false);
-        modelCards = new ArrayList<>();
-        gridView = view.findViewById(R.id.grid_view);
-        gridAdapter = new GridAdapter(view.getContext(), modelCards);
-        gridView.setAdapter(gridAdapter);
+        animFadein = AnimationUtils.loadAnimation(view.getContext(),
+                R.anim.fade_in);
+        modelCards = new ArrayList<ModelCard>();
+        recyclerView = view.findViewById(R.id.id_recycler_explore);
+        view.startAnimation(animFadein);
+        gridAdapter = new GridAdapter(view.getContext(),modelCards);
+        final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(view.getContext());
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(gridAdapter);
+        skeletonScreen = Skeleton.bind(recyclerView).adapter(gridAdapter).shimmer(true).count(10).load(R.layout.skeleton_view).show();
         getJson(LINK_URL,view.getContext());
         gridAdapter.notifyDataSetChanged();
-        gridView.setOnScrollListener(new AbsListView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
 
-            }
+       recyclerView.addOnScrollListener(new OnScrollListener() {
+           @Override
+           public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+               super.onScrollStateChanged(recyclerView, newState);
+           }
 
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-//                    Log.e("serrr",firstVisibleItem+" "+visibleItemCount+" "+totalItemCount);
-    if(firstVisibleItem+visibleItemCount==totalItemCount){
-        p++;
-        if(getJson(LINK_URL+"?page="+p,view.getContext())==400){
-            return;
-        }
-    }
-            }
-        });
+           @Override
+           public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+               super.onScrolled(recyclerView, dx, dy);
+               if (loading) {
+                   if (dy > 0) //check for scroll down
+                   {
+                       visibleItemCount = linearLayoutManager.getChildCount();
+                       totalItemCount = linearLayoutManager.getItemCount();
+                       firstVisibleItem = linearLayoutManager.findFirstVisibleItemPosition();
+
+                           if (firstVisibleItem + visibleItemCount == totalItemCount) {
+                               loading=false;
+                               p++;
+                               if (getJson(LINK_URL + "?page=" + p, view.getContext()) == 400) {
+                                   return;
+//               super.onScrolled(recyclerView, dx, dy);
+                               }
+                           }
+                       }
+
+                   }
+               }
+
+
+
+       });
         return view;
     }
 
@@ -96,6 +122,7 @@ public class ExploreFragment extends Fragment {
 
             @Override
             public void onResponse(JSONArray response) {
+                skeletonScreen.hide();
                 for (int i = 0; i < response.length(); i++) {
                     JSONObject obj1 = response.optJSONObject(i);
                     JSONObject property = obj1.optJSONObject("property_meta");
@@ -107,7 +134,7 @@ public class ExploreFragment extends Fragment {
                     String size = size_array.optString(0);
                     JSONArray thumbnail_array=property.optJSONArray("_thumbnail_id");
                     String thumbnail_id=thumbnail_array.optString(0);
-                    ModelCard m1 = new ModelCard(price, "7", size,thumbnail_id);
+                    ModelCard m1 = new ModelCard("₹ "+price, "7", size,thumbnail_id);
                     modelCards.add(m1);
 
 
@@ -139,6 +166,21 @@ public class ExploreFragment extends Fragment {
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         return to_be_returned;
+    }
+
+    @Override
+    public void onAnimationStart(Animation animation) {
+
+    }
+
+    @Override
+    public void onAnimationEnd(Animation animation) {
+
+    }
+
+    @Override
+    public void onAnimationRepeat(Animation animation) {
+
     }
 //    public String getThumbnail(String id,Context context){
 //        RequestQueue requestQueue=Volley.newRequestQueue(context);

@@ -1,4 +1,4 @@
-package com.dextroxd.sellvehicle.Fragments;
+package com.dextroxd.sellvehicle.my_account;
 
 
 import android.content.Intent;
@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.dextroxd.sellvehicle.Activity.viewEditProfile;
+import com.dextroxd.sellvehicle.activities.viewEditProfile;
 import com.dextroxd.sellvehicle.R;
 
 /**
