@@ -1,8 +1,10 @@
-package com.dextroxd.sellvehicle.login_and_signup;
+package com.dextroxd.sellvehicle.Login_and_signup;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +19,13 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Arrays;
 
@@ -25,11 +34,15 @@ public class SignUpActivity extends AppCompatActivity {
     EditText name_text;
     EditText password_text;
     EditText city_text;
+    private FirebaseAuth mAuth;
+   private GoogleSignInClient googleSignInClient;
     EditText email_text;
     ImageView fb_button;
+    Button google_login;
     ImageView google_button;
     TextView login_link;
     CallbackManager callbackManager;
+    private static final int RC_SIGN_IN = 007;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,10 +58,22 @@ public class SignUpActivity extends AppCompatActivity {
 //            }
 //        });
         login_link = findViewById(R.id.link_login);
+        google_button=findViewById(R.id.btn_google);
+        google_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                        .requestEmail()
+                        .build();
+                googleSignInClient = GoogleSignIn.getClient(SignUpActivity.this, gso);
+                signIn();
+            }
+        });
+
         login_link.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SignUpActivity.this,LoginActivity.class));
+                startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
                 finish();
             }
         });
@@ -117,11 +142,53 @@ public class SignUpActivity extends AppCompatActivity {
 
 
    }
+    private void signIn() {
+        Intent signInIntent = googleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        callbackManager.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK)
+            switch (requestCode) {
+                case 007:
+                    try {
+                        // The Task returned from this call is always completed, no need to attach
+                        // a listener.
+                        Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+                        GoogleSignInAccount account = task.getResult(ApiException.class);
+                        updateUI(account);
+                    } catch (ApiException e) {
+                        // The ApiException status code indicates the detailed failure reason.
+                        Log.w("status", "signInResult:failed code=" + e.getStatusCode());
+                    }
+                    break;
+            }
+
+            callbackManager.onActivityResult(requestCode, resultCode, data);
+
+
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        GoogleSignInAccount alreadyloggedAccount = GoogleSignIn.getLastSignedInAccount(this);
+        if (alreadyloggedAccount != null) {
+            Toast.makeText(this, "Already Logged In", Toast.LENGTH_SHORT).show();
+            updateUI(alreadyloggedAccount);
+        } else {
+            Log.d("status", "Not logged in");
+        }
+    }
+    private void updateUI(GoogleSignInAccount googleSignInAccount) {
+        Intent in=new Intent(SignUpActivity.this, MainActivity.class);
+//        email=inputEmail.getText().toString();
+//        in.putExtra("data",email);
+//        flag=true;
+//        in.putExtra("flag",flag);
+        startActivity(in);
+        finish();
     }
 }
 

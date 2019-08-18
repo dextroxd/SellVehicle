@@ -8,11 +8,14 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import com.dextroxd.sellvehicle.R;
 
 
 public class MyAdsFragment extends Fragment {
+    Animation animFadein;
 
 
     public MyAdsFragment() {
@@ -42,6 +45,9 @@ public class MyAdsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View RootView = inflater.inflate(R.layout.fragment_my_ads, container, false);
+        animFadein = AnimationUtils.loadAnimation(RootView.getContext(),
+                R.anim.fade_in);
+        RootView.startAnimation(animFadein);
         BottomNavigationView bottomNavigationView =(BottomNavigationView)RootView.findViewById(R.id.nav_bar_1);
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
 

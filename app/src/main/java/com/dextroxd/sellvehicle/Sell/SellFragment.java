@@ -1,4 +1,4 @@
-package com.dextroxd.sellvehicle.sell;
+package com.dextroxd.sellvehicle.Sell;
 
 
 import android.os.Bundle;
@@ -8,6 +8,8 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -23,6 +25,7 @@ public class SellFragment extends Fragment {
     String final_furnishing;
     String  final_rent,final_bedroom;
     Button submit_button;
+    Animation animFadein;
 
 
     public SellFragment() {
@@ -34,8 +37,10 @@ public class SellFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
          View view = inflater.inflate(R.layout.fragment_sell, container, false);
-         final EditText editText_project=(EditText)view.findViewById(R.id.id_project);
-        final TextView textView_count=(TextView)view.findViewById(R.id.id_count);
+        animFadein = AnimationUtils.loadAnimation(view.getContext(),
+                R.anim.fade_in);
+        view.startAnimation(animFadein);
+
           final EditText editText_ad=(EditText)view.findViewById(R.id.id_Ad);
          final TextView textView_ad=(TextView)view.findViewById(R.id.id_count_ad);
         bedroooms=(EditText)view.findViewById(R.id.id_bedrooms);
@@ -54,26 +59,7 @@ public class SellFragment extends Fragment {
             }
         });
 
-        editText_project.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                String text=editText_project.getText().toString();
-                int symbol=text.length();
-                textView_count.setText(""+symbol+"/400");
-
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
         editText_ad.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

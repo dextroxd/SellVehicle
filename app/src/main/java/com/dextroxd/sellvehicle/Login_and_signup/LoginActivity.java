@@ -1,4 +1,4 @@
-package com.dextroxd.sellvehicle.login_and_signup;
+package com.dextroxd.sellvehicle.Login_and_signup;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import com.dextroxd.sellvehicle.activities.MainActivity;
 import com.dextroxd.sellvehicle.R;
+import com.dextroxd.sellvehicle.Login_and_signup.LoginActivity;
+import com.dextroxd.sellvehicle.Login_and_signup.SignUpActivity;
 
 public class LoginActivity extends AppCompatActivity {
     TextView link_signup;

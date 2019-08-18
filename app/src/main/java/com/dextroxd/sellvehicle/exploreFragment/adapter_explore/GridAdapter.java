@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,6 +25,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.MyViewHolder>{
     private ImageView image_house;
     private Context context;
     private List<ModelCard> houseList;
+     ImageView like_button;
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView cost, bedroom, size;
 
@@ -32,6 +34,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.MyViewHolder>{
             cost = (TextView) view.findViewById(R.id.cost_sell);
             bedroom = (TextView) view.findViewById(R.id.bedroom_sell);
             size = (TextView) view.findViewById(R.id.size_sell);
+            like_button=(ImageView)view.findViewById(R.id.likebutton);
         }
     }
     public GridAdapter(Context context,List<ModelCard> houseList) {
@@ -77,14 +80,20 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.MyViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
-        ModelCard modelCard = houseList.get(i);
+        final ModelCard modelCard = houseList.get(i);
         myViewHolder.cost.setText(modelCard.getCost());
         myViewHolder.bedroom.setText(modelCard.getBedroom());
         myViewHolder.size.setText(modelCard.getFurnishing());
+
         myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                v.getContext().startActivity(new Intent(v.getContext(), cardActivity.class));
+                Intent in =new Intent(v.getContext(),cardActivity.class);
+              in.putExtra("cost",modelCard.getCost());
+              in.putExtra("bedroom",modelCard.getBedroom());
+              in.putExtra("size",modelCard.getFurnishing());
+              context.startActivity(in);
+
             }
         });
 
@@ -96,5 +105,6 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.MyViewHolder>{
     public int getItemCount() {
         return houseList.size();
     }
+
 
 }

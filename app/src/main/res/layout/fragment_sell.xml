@@ -2,17 +2,31 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:padding="10dp"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".sell.SellFragment">
+    tools:context=".Sell.SellFragment"
+    >
     <android.support.v7.widget.Toolbar
         android:id="@+id/id_actionBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:titleTextColor="@android:color/white"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/white_round"
-        app:title="Include Some Details" >
+        android:gravity="center"
+
+        android:background="#616161"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Details"
+            android:textSize="25sp"
+            android:textColor="@android:color/white"
+            android:fontFamily="@font/psr"
+            android:gravity="center_horizontal"
+            android:layout_marginLeft="150dp"/>
     </android.support.v7.widget.Toolbar>
 
     <ScrollView
@@ -30,19 +44,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
+                android:fontFamily="@font/psr"
+                android:background="@drawable/round_back"
+                android:padding="15dp"
+
                 android:layout_marginTop="10dp"
                 android:hint="Type*" />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/round_back"
+                android:padding="15dp"
                 android:id="@+id/id_bedrooms"
+                android:fontFamily="@font/psr"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"
                 android:hint="Bedrooms"/>
             <EditText
                 android:layout_width="match_parent"
+                android:fontFamily="@font/psr"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
+                android:background="@drawable/round_back"
+                android:padding="15dp"
+
                 android:layout_marginTop="10dp"
                 android:id="@+id/id_bathrooms"
                 android:hint="Bathrooms"/>
@@ -51,38 +76,42 @@
                 android:id="@+id/id_furnishing"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/psr"
                 android:layout_alignParentStart="true"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="20dp"
+                android:background="@drawable/round_back"
+                android:padding="15dp"
                 android:hint="Furnishing" />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
+                android:fontFamily="@font/psr"
                 android:layout_marginTop="10dp"
                 android:id="@+id/id_listed"
+                android:background="@drawable/round_back"
+                android:padding="15dp"
                 android:hint="Listed By"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"
+                android:fontFamily="@font/psr"
                 android:layout_height="wrap_content"
+                android:background="@drawable/round_back"
+                android:padding="15dp"
                 android:id="@+id/id_BuiltUp"
                 android:hint="Super Builtup Area(ft*ft)*"/>
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/id_carpet"
-                android:hint="Carpet Area(ft*ft)*"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:textSize="20dp"
+                android:fontFamily="@font/psr"
+                android:textColor="#000000"
                 android:id="@+id/id_bachelors"
-                android:hint="Bachelors Allowed"/>
+                android:text="Bachelors Allowed"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -106,60 +135,45 @@
             <EditText
                 android:id="@+id/id_maintenance"
                 android:layout_width="match_parent"
-                android:layout_height="98dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/psr"
                 android:layout_marginTop="10dp"
+                android:background="@drawable/round_back"
+                android:padding="15dp"
                 android:layout_marginBottom="20dp"
                 android:hint="Maintenance(Monthly)" />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/psr"
                 android:id="@+id/id_total_floors"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"
+                android:background="@drawable/round_back"
+                android:padding="15dp"
                 android:hint="Total Floors"/>
+
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                android:layout_marginTop="10dp"
-                android:id="@+id/id_Floor_no"
-                android:hint="Floor No"/>
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
+                android:background="@drawable/round_back"
+                android:padding="15dp"
                 android:layout_marginTop="10dp"
                 android:id="@+id/id_parking"
+                android:fontFamily="@font/psr"
                 android:hint="Car Parking"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"
+                android:fontFamily="@font/psr"
+                android:background="@drawable/round_back"
+                android:padding="15dp"
                 android:id="@+id/id_facing"
                 android:hint="Facing"/>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/id_project"
-                    android:layout_marginTop="10dp"
-                    android:maxLength="400"
-                    android:hint="Project Name"/>
-                <TextView
-                    android:id="@+id/id_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/id_project"
-                    android:layout_alignParentRight="true"
-                    android:textSize="20dp"
-                    android:layout_marginRight="10dp"
-
-                    android:text="0"/>
-            </RelativeLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -167,6 +181,7 @@
                     android:layout_width="wrap_content"
                     android:id="@+id/id_ad_title"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/psr"
                     android:text="Ad Title*"
                     android:textSize="20dp"/>
                 <EditText
@@ -174,6 +189,7 @@
                     android:maxLength="400"
                     android:layout_below="@id/id_ad_title"
                     android:hint="eg 2 BHK Room"
+                    android:fontFamily="@font/psr"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     />
@@ -183,6 +199,7 @@
                     android:id="@+id/id_count_ad"
                     android:text="0"
                     android:layout_below="@id/id_Ad"
+                    android:fontFamily="@font/psr"
                     android:textSize="20dp"
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="5dp"
@@ -192,19 +209,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
+                android:fontFamily="@font/psr"
                 android:layout_marginTop="10dp"
                 android:text="Describe What You are Selling?"
                 android:textSize="20dp"/>
             <EditText
                 android:layout_width="match_parent"
+                android:fontFamily="@font/psr"
                 android:layout_height="wrap_content"
                 android:id="@+id/id_describe"
                 android:hint="Include condition features "/>
             <Button
                 android:layout_width="match_parent"
                 android:text="submit"
+                android:background="#616161"
                 android:id="@+id/id_submit"
                 android:layout_marginTop="20dp"
+                android:textColor="#ffffff"
+                android:fontFamily="@font/psr"
                 android:layout_height="wrap_content" />
 
 

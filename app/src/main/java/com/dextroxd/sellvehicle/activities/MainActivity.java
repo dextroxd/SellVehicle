@@ -7,10 +7,11 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.dextroxd.sellvehicle.R;
-import com.dextroxd.sellvehicle.sell.SellFragment;
+
 import com.dextroxd.sellvehicle.exploreFragment.ExploreFragment;
 import com.dextroxd.sellvehicle.myAds.MyAdsFragment;
 import com.dextroxd.sellvehicle.my_account.MyAccountFragment;
+import com.dextroxd.sellvehicle.Sell.SellFragment;
 
 public class MainActivity extends AppCompatActivity {
     //Bottom Navigation Bar and its navigator
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
                     selectedFragment = new ExploreFragment();
                     break;
                 case R.id.sell:
+
                     selectedFragment = new SellFragment();
                     break;
                 case R.id.myads:

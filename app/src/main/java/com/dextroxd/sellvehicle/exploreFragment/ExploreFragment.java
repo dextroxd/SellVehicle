@@ -2,6 +2,7 @@ package com.dextroxd.sellvehicle.exploreFragment;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,6 +15,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkResponse;
@@ -23,6 +26,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.dextroxd.sellvehicle.activities.filterActivity;
 import com.dextroxd.sellvehicle.exploreFragment.adapter_explore.GridAdapter;
 import com.dextroxd.sellvehicle.exploreFragment.model_explore.ModelCard;
 import com.dextroxd.sellvehicle.R;
@@ -44,7 +48,7 @@ public class ExploreFragment extends Fragment implements Animation.AnimationList
     int p = 1;
     int to_be_returned = 200;
     private RecyclerView recyclerView;
-    private Drawable filter_button;
+    private ImageButton filter_button;
     String cost, bedroom, furnishing;
     private GridAdapter gridAdapter;
     private SkeletonScreen skeletonScreen;
@@ -65,13 +69,21 @@ public class ExploreFragment extends Fragment implements Animation.AnimationList
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        final View view = inflater.inflate(R.layout.fragment_explore, container, false);
+         final  View view = inflater.inflate(R.layout.fragment_explore, container, false);
         animFadein = AnimationUtils.loadAnimation(view.getContext(),
                 R.anim.fade_in);
         modelCards = new ArrayList<ModelCard>();
         recyclerView = view.findViewById(R.id.id_recycler_explore);
         view.startAnimation(animFadein);
         gridAdapter = new GridAdapter(view.getContext(),modelCards);
+        filter_button=(ImageButton)view.findViewById(R.id.filter_button);
+        filter_button.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(view.getContext(), filterActivity.class));
+            }
+        });
+
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(view.getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(gridAdapter);
@@ -128,8 +140,12 @@ public class ExploreFragment extends Fragment implements Animation.AnimationList
                     JSONObject property = obj1.optJSONObject("property_meta");
                     JSONArray price_array = property.optJSONArray("REAL_HOMES_property_price");
                     String price = price_array.optString(0);
-                    //JSONArray bedroom_array = property.optJSONArray("REAL_HOMES_property_bedrooms");
-                    //String bedroom = bedroom_array.optString(0);
+//                    JSONArray bedroom_array = property.optJSONArray("REAL_HOMES_property_bedrooms");
+//                    String bedroom = bedroom_array.optString(0);
+//                    if(bedroom.equals("null")){
+//                        bedroom="0";
+//                    }
+//                    Log.e("bedroom",bedroom);
                     JSONArray size_array = property.optJSONArray("REAL_HOMES_property_size");
                     String size = size_array.optString(0);
                     JSONArray thumbnail_array=property.optJSONArray("_thumbnail_id");
