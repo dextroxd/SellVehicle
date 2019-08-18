@@ -1,16 +1,19 @@
 package com.dextroxd.sellvehicle.activities;
 
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.dextroxd.sellvehicle.R;
 import com.dextroxd.sellvehicle.sell.SellFragment;
 import com.dextroxd.sellvehicle.exploreFragment.ExploreFragment;
 import com.dextroxd.sellvehicle.myAds.MyAdsFragment;
 import com.dextroxd.sellvehicle.my_account.MyAccountFragment;
+import com.facebook.share.Share;
 
 public class MainActivity extends AppCompatActivity {
     //Bottom Navigation Bar and its navigator
@@ -44,7 +47,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        SharedPreferences preferences = getApplicationContext().getSharedPreferences("Litstays",0);
+        Toast.makeText(MainActivity.this,preferences.getString("auth_Token","hell"),Toast.LENGTH_SHORT).show();
         bottomNavigationView = findViewById(R.id.nav_bar);
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
         getSupportFragmentManager().beginTransaction().replace(R.id.container,new ExploreFragment()).commit();

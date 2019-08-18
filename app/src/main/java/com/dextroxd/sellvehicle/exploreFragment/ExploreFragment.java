@@ -186,7 +186,7 @@ public class ExploreFragment extends Fragment implements Animation.AnimationList
 //        RequestQueue requestQueue=Volley.newRequestQueue(context);
 //        String LINK_MEDIA="http://www.litstays.com/wp-json/wp/v2/media"+"/"+id;
 //
-//        JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, LINK_MEDIA, null, new Response.Listener<JSONObject>() {
+//        JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, LINK_MEDIA, null, new LoginResponse.Listener<JSONObject>() {
 //            @Override
 //            public void onResponse(JSONObject response) {
 //                JSONObject request=response.optJSONObject("media_details");
@@ -194,7 +194,7 @@ public class ExploreFragment extends Fragment implements Animation.AnimationList
 //                JSONObject thumbnail=request_size.optJSONObject("thumbnail");
 //                 url_image=thumbnail.optString("source_url");
 //            }
-//        }, new Response.ErrorListener() {
+//        }, new LoginResponse.ErrorListener() {
 //            @Override
 //            public void onErrorResponse(VolleyError error) {
 //                Log.e("Error", error.toString());

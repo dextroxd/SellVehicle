@@ -1,8 +1,10 @@
 package com.dextroxd.sellvehicle.login_and_signup;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +14,9 @@ import android.widget.Toast;
 
 import com.dextroxd.sellvehicle.activities.MainActivity;
 import com.dextroxd.sellvehicle.R;
+import com.dextroxd.sellvehicle.login_and_signup.network.ApiInterface;
+import com.dextroxd.sellvehicle.login_and_signup.network.ApiUtils;
+import com.dextroxd.sellvehicle.login_and_signup.network.model.Response;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -19,6 +24,9 @@ import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 
 import java.util.Arrays;
+
+import retrofit2.Call;
+import retrofit2.Callback;
 
 public class SignUpActivity extends AppCompatActivity {
     Button signup_button;
@@ -28,22 +36,21 @@ public class SignUpActivity extends AppCompatActivity {
     EditText email_text;
     ImageView fb_button;
     ImageView google_button;
+    private ApiInterface mApiInterface;
     TextView login_link;
+    private SharedPreferences preferences;
     CallbackManager callbackManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-//        final TextView login_link=(TextView)findViewById(R.id.link_login);
+        preferences = getApplicationContext().getSharedPreferences("Litstays",0);
+        if(!TextUtils.equals(preferences.getString("auth_Token","hell"),"hell")){
+            startActivity(new Intent(SignUpActivity.this,MainActivity.class));
+            finish();
+        }
         callbackManager = CallbackManager.Factory.create();
 
-//        login_link.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent in =new Intent(SignUpActivity.this,LoginActivity.class);
-//                startActivity(in);
-//            }
-//        });
         login_link = findViewById(R.id.link_login);
         login_link.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,6 +59,7 @@ public class SignUpActivity extends AppCompatActivity {
                 finish();
             }
         });
+        mApiInterface = ApiUtils.getAPIService();
         fb_button = findViewById(R.id.btn_fb);
         fb_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,12 +95,11 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }
    public void onSignup(View v){
-        if(v.getId()==R.id.btn_signup)
-        {
-            EditText name_text=(EditText)findViewById(R.id.input_name);
-            EditText password_text=(EditText)findViewById(R.id.input_password);
-            EditText phone_text=(EditText)findViewById(R.id.input_phone);
-            EditText email_text=(EditText)findViewById(R.id.input_email);
+
+            EditText name_text=findViewById(R.id.input_name);
+            EditText password_text=findViewById(R.id.input_password);
+            EditText phone_text=findViewById(R.id.input_phone);
+            EditText email_text=findViewById(R.id.input_email);
 
 
             String nameattr=name_text.getText().toString();
@@ -107,15 +114,40 @@ public class SignUpActivity extends AppCompatActivity {
             }
             else
             {
-                Toast toast=Toast.makeText(SignUpActivity.this,"Successful Sign Up",Toast.LENGTH_SHORT);
-                toast.show();
-                Intent in = new Intent(SignUpActivity.this,MainActivity.class);
-                startActivity(in);
+                onSignUp(nameattr,emailattr,passatr,passatr);
             }
 
-        }
 
+   }
 
+   public void onSignUp(String name, String email, String password, String password2)
+   {
+       Response response = new Response();
+       response.setName(name);
+       response.setEmail(email);
+       response.setPassword(password);
+       response.setPassword2(password2);
+        mApiInterface.saveUser(response).enqueue(new Callback<Response>() {
+
+            @Override
+            public void onResponse(Call call, retrofit2.Response response) {
+            if(response.code()==200)
+            {
+                Toast.makeText(SignUpActivity.this,"Success",Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(SignUpActivity.this,LoginActivity.class));
+                finish();
+            }
+            else {
+                Toast.makeText(SignUpActivity.this,"Please try again",Toast.LENGTH_SHORT).show();
+            }
+
+            }
+
+            @Override
+            public void onFailure(Call call, Throwable t) {
+
+            }
+        });
    }
 
     @Override
