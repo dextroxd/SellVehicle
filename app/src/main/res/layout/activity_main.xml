@@ -13,10 +13,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:labelVisibilityMode="labeled"
+        android:theme="@style/Widget.BottomNavigationView"
         app:menu="@menu/bottom_navigation"
         app:itemTextAppearanceActive="@style/BottomNavigationView.Active"
         app:itemTextAppearanceInactive="@style/BottomNavigationView"
         android:layout_alignParentBottom="true"
         android:id="@+id/nav_bar"
-        android:background="#E0E0E0"/>
+        android:background="#c0c0c0"/>
 </RelativeLayout>

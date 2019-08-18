@@ -7,6 +7,7 @@ public class ModelCard {
     // boolean like;
     String Bedroom;
     String Furnishing;
+    Boolean like;
 
   public ModelCard(String cost,String bedroom,String furnishing,String imageUrl) {
       this.imageUrl = imageUrl;
@@ -15,8 +16,17 @@ public class ModelCard {
       // this.like = like;
       Bedroom = bedroom;
       Furnishing = furnishing;
+      //this.like=like;
   }
     //}
+
+//    public Boolean getLike() {
+//        return like;
+//    }
+//
+//    public void setLike(Boolean like) {
+//        this.like = like;
+//    }
 
     //  public String getImageUrl() {
     //    return imageUrl;

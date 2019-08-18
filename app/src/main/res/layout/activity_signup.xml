@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login_and_signup.SignUpActivity"
+    tools:context=".Login_and_signup.SignUpActivity"
     android:focusableInTouchMode="false"
     android:background="#302A2A"
     android:paddingBottom="18dp">
@@ -204,7 +204,7 @@
         android:id="@+id/btn_google"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:background="@drawable/round_button_red"
+        android:background="@drawable/round_button_red_real"
         android:src="@drawable/ic_gmail"
         android:scaleType="centerInside"
         android:layout_marginLeft="48dp"
